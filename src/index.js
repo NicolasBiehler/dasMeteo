@@ -3,19 +3,17 @@ import ReactDOM from 'react-dom'
 import App from './App'
 import * as serviceWorker from './serviceWorker'
 import { BrowserRouter as Router } from 'react-router-dom'
-import { ThemeProvider, CSSReset, ColorModeProvider } from '@chakra-ui/core'
+import { ThemeProvider, CSSReset } from '@chakra-ui/core'
 
 import customTheme from './chakra.theme'
 
 ReactDOM.render(
   <React.StrictMode>
     <ThemeProvider theme={customTheme}>
-      <ColorModeProvider>
-        <CSSReset />
-        <Router>
-          <App />
-        </Router>
-      </ColorModeProvider>
+      <CSSReset />
+      <Router>
+        <App />
+      </Router>
     </ThemeProvider>
   </React.StrictMode>,
   document.getElementById('root'),
