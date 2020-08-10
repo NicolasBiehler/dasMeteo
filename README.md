@@ -1,3 +1,9 @@
+# Das Meteo
+
+This is a little project I created to play with [Chakra-ui](https://chakra-ui.com/).
+
+It uses the [Open Weather API](https://openweathermap.org/).
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
