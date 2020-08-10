@@ -2,9 +2,7 @@ import React from 'react'
 import { Box, Heading, Flex } from '@chakra-ui/core'
 import PropTypes from 'prop-types'
 
-import LocationPicker from '../LocationPicker'
-
-function Header({ userLocation }) {
+function Header({ children }) {
   return (
     <Flex ml={5} mt={5} mr={5}>
       <Box flexGrow={1}>
@@ -12,7 +10,7 @@ function Header({ userLocation }) {
           <Box justifyContent="center">
             <Heading>Das Meteo App</Heading>
           </Box>
-          <LocationPicker userLocation={userLocation} />
+          {children}
         </header>
       </Box>
     </Flex>
@@ -20,7 +18,7 @@ function Header({ userLocation }) {
 }
 
 Header.propTypes = {
-  userLocation: PropTypes.object,
+  children: PropTypes.node.isRequired,
 }
 
 export default Header

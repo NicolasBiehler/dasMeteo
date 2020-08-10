@@ -1,9 +1,17 @@
 import React from 'react'
-import { render } from '@testing-library/react'
+
+import { render } from './testUtils'
 import App from './App'
 
-// test('renders the header', () => {
-//   const { getByText } = render(<App />)
-//   const titleElement = getByText(/Das Meteo App/i)
-//   expect(titleElement).toBeInTheDocument()
-// })
+jest.mock('react-geolocated', () => ({
+  geolocated: () => (ui) => ui,
+}))
+
+describe('App', () => {
+  test('renders the header title', () => {
+    console.log(render)
+    const { getByText } = render(<App />)
+    const titleElement = getByText(/Das Meteo App/i)
+    expect(titleElement).toBeInTheDocument()
+  })
+})
