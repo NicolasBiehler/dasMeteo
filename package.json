@@ -4,7 +4,8 @@
   "private": true,
   "license": "MIT",
   "repository": {
-    "type": "git"
+    "type": "git",
+    "url": "https://github.com/NicolasBiehler/dasMeteo.git"
   },
   "dependencies": {
     "@chakra-ui/core": "^0.8.0",
