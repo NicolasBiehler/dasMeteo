@@ -1,11 +1,11 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 import { Flex } from '@chakra-ui/core'
 import PropTypes from 'prop-types'
 import { DateTime } from 'luxon'
 
 import WeatherStack from '../WeatherStack'
 
-const getMiddayData = (dataPoints, ISODate) => {
+const getMiddayData = (dataPoints = [], ISODate) => {
   for (const dataPoint of dataPoints) {
     if (dataPoint.dt_txt === `${ISODate} 12:00:00`) {
       return dataPoint
@@ -13,10 +13,29 @@ const getMiddayData = (dataPoints, ISODate) => {
   }
 }
 
+const getWeekendDates = (currentISODate) => {
+  const currentDateTime = DateTime.fromISO(currentISODate)
+
+  const nextSaturday = currentDateTime
+    .plus({ days: 6 - currentDateTime.weekday })
+    .toISODate()
+  const nextSunday = currentDateTime
+    .plus({ days: 7 - currentDateTime.weekday })
+    .toISODate()
+
+  return {
+    nextSaturday,
+    nextSunday,
+  }
+}
+
 function WeekendBox({ info }) {
-  const now = DateTime.local()
-  const nextSaturday = now.plus({ days: 6 - now.weekday }).toISODate()
-  const nextSunday = now.plus({ days: 7 - now.weekday }).toISODate()
+  const currentISODate = DateTime.local().toISODate()
+
+  const { nextSaturday, nextSunday } = useMemo(
+    () => getWeekendDates(currentISODate),
+    [currentISODate],
+  )
 
   const nextSaturdayData = getMiddayData(info.list, nextSaturday)
   const nextSundayData = getMiddayData(info.list, nextSunday)
