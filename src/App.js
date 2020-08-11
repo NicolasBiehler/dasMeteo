@@ -35,7 +35,13 @@ function App({ coords }) {
   )
 
   return (
-    <Flex direction="column" width="full" flexGrow={1}>
+    <Flex
+      direction="column"
+      width="full"
+      height="100vh"
+      flexGrow={1}
+      backgroundColor="gray.50"
+    >
       <Header>
         <LocationPicker userLocation={coords} onChange={setLocation} />
       </Header>
