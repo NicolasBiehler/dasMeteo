@@ -22,7 +22,7 @@ function WeekendBox({ info }) {
   const nextSundayData = getMiddayData(info.list, nextSunday)
 
   return (
-    <Flex>
+    <Flex direction={{ base: 'column', lg: 'row' }}>
       {!nextSaturdayData && (
         <WeatherStack
           title="Next Saturday"

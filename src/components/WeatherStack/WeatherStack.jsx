@@ -20,19 +20,19 @@ function WeatherStack({ title, info, errorMessage }) {
       {errorMessage && <Text>{errorMessage}</Text>}
       {info && (
         <Flex direction="column" align="center">
-          <Flex align="center">
+          <Flex align="center" direction={{ base: 'column', sm: 'row' }}>
             <Heading as="h4" size="md">
               Temperature
             </Heading>
             <Tag>{temp}&#176;C</Tag>
           </Flex>
-          <Flex align="center" mt={2}>
+          <Flex align="center" direction={{ base: 'column', sm: 'row' }} mt={2}>
             <Heading as="h4" size="md" mr={3}>
               Weather
             </Heading>
             <Text>{description}</Text>
           </Flex>
-          <Flex align="center" mt={2}>
+          <Flex align="center" direction={{ base: 'column', sm: 'row' }} mt={2}>
             <Heading as="h4" size="md" mr={3}>
               Wind
             </Heading>
