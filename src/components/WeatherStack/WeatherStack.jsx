@@ -1,8 +1,8 @@
 import React from 'react'
-import { Box, Text, Stack, Tag, Heading, Flex } from '@chakra-ui/core'
+import { Text, Stack, Tag, Heading, Flex } from '@chakra-ui/core'
 import PropTypes from 'prop-types'
 
-function WeatherStack({ title, info }) {
+function WeatherStack({ title, info, errorMessage }) {
   const { main: { temp } = {}, weather = [], wind = {} } = info || {}
   const { description } = weather[0] || {}
 
@@ -16,7 +16,8 @@ function WeatherStack({ title, info }) {
       overflow="hidden"
     >
       <Heading color="orange.300">{title}</Heading>
-      {!info && <Text>Loading...</Text>}
+      {!info && !errorMessage && <Text>Loading...</Text>}
+      {errorMessage && <Text>{errorMessage}</Text>}
       {info && (
         <Flex direction="column" align="center">
           <Flex align="center">
@@ -46,6 +47,7 @@ function WeatherStack({ title, info }) {
 WeatherStack.propTypes = {
   title: PropTypes.string.isRequired,
   info: PropTypes.object,
+  errorMessage: PropTypes.string,
 }
 
 export default WeatherStack

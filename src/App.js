@@ -14,13 +14,22 @@ import { geolocated, geoPropTypes } from 'react-geolocated'
 import Header from './components/Header'
 import LocationPicker from './components/LocationPicker'
 import WeatherStack from './components/WeatherStack'
+import WeekendBox from './components/WeekendBox'
 
-import useDailyEndpoint from './hooks/use-daily-endpoint'
+import {
+  useDailyEndpoint,
+  useWeekendEndpoint,
+} from './hooks/use-open-weather-endpoints'
 
 function App({ coords }) {
-  const [location, setLocation] = useState('q=berlin,de')
+  const [location, setLocation] = useState('q=berlin')
 
   const { data, error } = useDailyEndpoint(
+    location,
+    process.env.REACT_APP_WEATHER_API_KEY,
+  )
+
+  const { data: weekendData, error: weekendError } = useWeekendEndpoint(
     location,
     process.env.REACT_APP_WEATHER_API_KEY,
   )
@@ -43,9 +52,10 @@ function App({ coords }) {
                 {!error && data && <WeatherStack title="Today" info={data} />}
               </TabPanel>
               <TabPanel>
-                {/* TODO */}
-                <WeatherStack title="Next Saturday" />
-                <WeatherStack title="Next Sunday" />
+                {weekendError && <Text>API is unavailable</Text>}
+                {!weekendError && weekendData && (
+                  <WeekendBox info={weekendData} />
+                )}
               </TabPanel>
             </TabPanels>
           </Tabs>

@@ -5,10 +5,14 @@ const getData = async (url) => {
   return await response.json()
 }
 
-const useDailyEndpoint = (location, appId) => {
+export function useDailyEndpoint(location, appId) {
   const url = `https://api.openweathermap.org/data/2.5/weather?${location}&appid=${appId}&units=metric`
 
   return useSWR(url, getData, { refreshInterval: 0 })
 }
 
-export default useDailyEndpoint
+export function useWeekendEndpoint(location, appId) {
+  const url = `https://api.openweathermap.org/data/2.5/forecast?${location}&appid=${appId}&units=metric`
+
+  return useSWR(url, getData, { refreshInterval: 0 })
+}

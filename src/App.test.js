@@ -9,7 +9,6 @@ jest.mock('react-geolocated', () => ({
 
 describe('App', () => {
   test('renders the header title', () => {
-    console.log(render)
     const { getByText } = render(<App />)
     const titleElement = getByText(/Das Meteo App/i)
     expect(titleElement).toBeInTheDocument()

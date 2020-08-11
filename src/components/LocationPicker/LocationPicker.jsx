@@ -12,8 +12,8 @@ function LocationPicker({ userLocation, onChange }) {
           onChange={(e) => onChange(e.target.value)}
           defaultValue={0}
         >
-          <option value="q=berlin,de">Berlin</option>
-          <option value="q=strasbourg,fr">Strasbourg</option>
+          <option value="q=berlin">Berlin</option>
+          <option value="q=strasbourg">Strasbourg</option>
           {userLocation && userLocation.latitude && userLocation.longitude && (
             <option
               value={`lat=${userLocation.latitude}&lon=${userLocation.longitude}`}
